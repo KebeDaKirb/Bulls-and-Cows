@@ -14,8 +14,6 @@ MAX_GUESS = 10
 count = 1
 seceret = random.sample(range(1, 10), 4)
 
-print(BANNER)
-
 
 # print(f"Seceret: {seceret}")
 def guess_calc(user_guess: str) -> list:
@@ -32,27 +30,29 @@ def guess_calc(user_guess: str) -> list:
     return guess, error_feedback
 
 
-while count <= MAX_GUESS:
-    guess, error_feedback = guess_calc(user_guess=input(f"Guess {count}:\n"))
-    if not guess:
-        print(error_feedback)
-        continue
-    # else:
-    #   print(f"Your guess was: {guess}")
+if __name__ == "__main__":
+    print(BANNER)
+    while count <= MAX_GUESS:
+        guess, error_feedback = guess_calc(user_guess=input(f"Guess {count}:\n"))
+        if not guess:
+            print(error_feedback)
+            continue
+        # else:
+        #   print(f"Your guess was: {guess}")
 
-    bulls = 0
-    cows = 0
-    for x in range(ANS_LENGTH):
-        if guess[x] == seceret[x]:
-            bulls += 1
-        elif guess[x] in seceret:
-            cows += 1
-    print(f"Cows: {cows}\nBulls: {bulls}")
-    print("-" * 80)
-    count += 1
-    if bulls == ANS_LENGTH:
-        print("You Win!")
-        break
-    if count > MAX_GUESS:
-        print("You Lost!")
-        break
+        bulls = 0
+        cows = 0
+        for x in range(ANS_LENGTH):
+            if guess[x] == seceret[x]:
+                bulls += 1
+            elif guess[x] in seceret:
+                cows += 1
+        print(f"Cows: {cows}\nBulls: {bulls}")
+        print("-" * 80)
+        count += 1
+        if bulls == ANS_LENGTH:
+            print("You Win!")
+            break
+        if count > MAX_GUESS:
+            print("You Lost!")
+            break
